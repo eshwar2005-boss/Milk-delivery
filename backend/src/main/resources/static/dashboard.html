@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Sangareddy Milk Delivery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+	--ink:#0b1f2a;
+	--milk:#f7f3ea;
+	--cream:#f5dfb2;
+	--leaf:#1f6b4f;
+	--sky:#b4d7ff;
+	--chili:#c54a2e;
+	--card:#ffffff;
+	--shadow:0 10px 30px rgba(11,31,42,.12);
+}
+*{box-sizing:border-box}
+body{
+	margin:0;
+	color:var(--ink);
+	font-family:"Space Grotesk",sans-serif;
+	background:
+		radial-gradient(1200px 600px at 10% -10%, #fff5d6 0%, transparent 60%),
+		radial-gradient(900px 500px at 90% 0%, #d7efff 0%, transparent 55%),
+		linear-gradient(160deg, #fbfbff 0%, #f4f7ff 30%, #fff8ed 100%);
+}
+header{
+	padding:32px 20px 10px;
+	position:relative;
+	overflow:hidden;
+}
+.brand{
+	max-width:1100px;
+	margin:0 auto;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:20px;
+}
+.brand h1{
+	margin:0;
+	font-family:"Playfair Display",serif;
+	font-size:clamp(28px,4vw,44px);
+	letter-spacing:.2px;
+}
+.brand .tag{
+	font-size:14px;
+	padding:6px 12px;
+	border-radius:999px;
+	background:var(--cream);
+	color:#6a4a1a;
+	font-weight:600;
+}
+.hero{
+	max-width:1100px;
+	margin:20px auto 0;
+	display:grid;
+	grid-template-columns:1.1fr .9fr;
+	gap:24px;
+	align-items:center;
+}
+.hero-card{
+	background:var(--card);
+	border-radius:22px;
+	padding:28px;
+	box-shadow:var(--shadow);
+	position:relative;
+}
+.hero-card:before{
+	content:"";
+	position:absolute;
+	inset:-8px -8px auto auto;
+	width:120px;
+	height:120px;
+	border-radius:50%;
+	background:radial-gradient(circle at 30% 30%, #ffffff 0%, #ffe0a5 60%, transparent 70%);
+	opacity:.7;
+}
+.hero h2{
+	margin:0 0 10px;
+	font-size:clamp(22px,3vw,32px);
+}
+.hero p{
+	margin:0 0 16px;
+	color:#3d4f5a;
+}
+.hero ul{margin:0;padding:0 0 0 18px;color:#3d4f5a}
+.hero li{margin:6px 0}
+.panel{
+	background:linear-gradient(140deg, #1f6b4f 0%, #1d4a62 100%);
+	color:#f3fff8;
+	border-radius:22px;
+	padding:28px;
+	box-shadow:var(--shadow);
+	position:relative;
+	overflow:hidden;
+}
+.panel:after{
+	content:"";
+	position:absolute;
+	right:-40px;
+	top:-40px;
+	width:150px;
+	height:150px;
+	border-radius:50%;
+	background:rgba(255,255,255,.12);
+}
+.container{max-width:1100px;margin:20px auto 60px;padding:0 20px}
+.grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+	gap:18px;
+}
+.card{
+	background:var(--card);
+	border-radius:20px;
+	padding:20px;
+	box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 12px;font-size:18px}
+.pill{
+	display:inline-flex;
+	align-items:center;
+	gap:8px;
+	font-size:12px;
+	background:#eef6ff;
+	color:#23507a;
+	padding:4px 10px;
+	border-radius:999px;
+	font-weight:600;
+}
+.wallet{
+	font-size:28px;
+	font-weight:700;
+	color:var(--leaf);
+	margin:4px 0 10px;
+}
+label{display:block;margin:8px 0 6px;font-weight:600;color:#2c3c46}
+input,select{
+	width:100%;
+	padding:10px 12px;
+	border-radius:10px;
+	border:1px solid #d9e2ea;
+	font-family:"Space Grotesk",sans-serif;
+	background:#fff;
+}
+button{
+	border:0;
+	padding:10px 14px;
+	border-radius:12px;
+	font-weight:600;
+	cursor:pointer;
+	background:linear-gradient(135deg, #2367d1 0%, #3aa3ff 100%);
+	color:white;
+	box-shadow:0 10px 20px rgba(35,103,209,.18);
+}
+button.secondary{background:#f1f5f9;color:#1d2b34;box-shadow:none}
+.hidden{display:none !important}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.note{font-size:12px;color:#5c6b76}
+.countdown{
+	font-size:26px;
+	font-weight:700;
+	letter-spacing:.5px;
+	color:#0f3b57;
+}
+.subtle{color:#5c6b76;font-size:13px}
+.log{
+	margin-top:10px;
+	font-weight:600;
+	color:#1f6b4f;
+	min-height:18px;
+}
+.full{grid-column:1 / -1}
+.product-grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+	gap:16px;
+	margin-top:16px;
+}
+.product-card{
+	background:white;
+	border:1px solid #e6edf3;
+	border-radius:14px;
+	padding:14px;
+	text-align:center;
+	transition:all .2s;
+	cursor:pointer;
+}
+.product-card:hover{
+	border-color:#2367d1;
+	transform:translateY(-2px);
+	box-shadow:0 8px 20px rgba(35,103,209,.12);
+}
+.product-icon{
+	font-size:40px;
+	margin:8px 0;
+}
+.product-name{
+	font-weight:600;
+	margin:6px 0;
+	color:#0b1f2a;
+}
+.product-price{
+	font-size:18px;
+	font-weight:700;
+	color:#1f6b4f;
+	margin:4px 0;
+}
+.product-unit{
+	font-size:12px;
+	color:#5c6b76;
+}
+.add-to-cart{
+	width:100%;
+	margin-top:10px;
+	padding:8px;
+	font-size:13px;
+}
+.cart-badge{
+	background:#ff4444;
+	color:white;
+	border-radius:12px;
+	padding:2px 8px;
+	font-size:12px;
+	font-weight:700;
+	position:absolute;
+	top:-6px;
+	right:-6px;
+}
+.cart-items{
+	max-height:200px;
+	overflow-y:auto;
+}
+.cart-item{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:8px;
+	border-bottom:1px solid #e6edf3;
+}
+.history-table{
+	width:100%;
+	border-collapse:collapse;
+	font-size:14px;
+	margin-top:10px;
+}
+.history-table th,
+.history-table td{
+	text-align:left;
+	padding:10px 12px;
+	border-bottom:1px solid #e6edf3;
+}
+.history-table th{
+	font-size:12px;
+	letter-spacing:.4px;
+	text-transform:uppercase;
+	color:#4c5c66;
+	background:#f6f9fc;
+}
+.history-table tbody tr:nth-child(even){background:#fbfdff}
+.status{
+	display:inline-block;
+	padding:2px 10px;
+	border-radius:999px;
+	font-size:12px;
+	font-weight:600;
+}
+.status.success{background:#e8f5e9;color:#1f6b4f}
+.status.fail{background:#fdecea;color:#b3261e}
+.wave{
+	height:30px;
+	background:linear-gradient(90deg, #f7f3ea 0%, #ffe7ba 45%, #d9edff 100%);
+	mask:radial-gradient(24px 14px at 24px 16px, transparent 98%, black) -24px 0/48px 100% repeat-x;
+}
+.modal{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(11,31,42,.75);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	z-index:1000;
+	backdrop-filter:blur(4px);
+}
+.modal-content{
+	background:white;
+	border-radius:24px;
+	padding:32px;
+	max-width:500px;
+	width:90%;
+	max-height:90vh;
+	overflow-y:auto;
+	box-shadow:0 20px 60px rgba(11,31,42,.3);
+	animation:modalIn .4s ease both;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-header{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	margin-bottom:20px;
+}
+.modal-header h3{
+	margin:0;
+	font-size:24px;
+}
+.close-btn{
+	background:transparent;
+	border:0;
+	font-size:28px;
+	color:#5c6b76;
+	cursor:pointer;
+	padding:0;
+	width:32px;
+	height:32px;
+	border-radius:50%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	box-shadow:none;
+	transition:background .2s;
+}
+.close-btn:hover{background:#f1f5f9}
+.payment-tabs{
+	display:flex;
+	gap:8px;
+	margin-bottom:20px;
+	border-bottom:2px solid #e6edf3;
+}
+.payment-tab{
+	padding:10px 16px;
+	background:transparent;
+	border:0;
+	border-bottom:3px solid transparent;
+	color:#5c6b76;
+	font-weight:600;
+	cursor:pointer;
+	transition:all .2s;
+	box-shadow:none;
+}
+.payment-tab.active{
+	border-bottom-color:#2367d1;
+	color:#2367d1;
+}
+.payment-section{
+	margin-top:20px;
+}
+.qr-code{
+	text-align:center;
+	padding:20px;
+	background:#f8f9fa;
+	border-radius:16px;
+	margin:16px 0;
+}
+.qr-code img{
+	width:200px;
+	height:200px;
+	margin:12px auto;
+	border:4px solid white;
+	border-radius:12px;
+	box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+.upi-id{
+	background:#fff;
+	padding:12px;
+	border-radius:10px;
+	border:1px solid #d9e2ea;
+	font-weight:600;
+	color:#1f6b4f;
+	text-align:center;
+	margin:12px 0;
+	font-size:16px;
+}
+.payment-info{
+	background:#eef6ff;
+	padding:12px;
+	border-radius:10px;
+	margin:12px 0;
+	font-size:13px;
+	color:#23507a;
+}
+.fade-in{animation:fadeIn .6s ease both}
+.rise{animation:rise .6s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:900px){
+	.hero{grid-template-columns:1fr}
+	.modal-content{padding:24px;width:95%}
+}
+</style>
+</head>
+<body>
+<header>
+	<div class="brand">
+		<div>
+			<h1>🥛 Sangareddy Daily Milk</h1>
+			<div class="note">Fresh morning delivery with transparent billing</div>
+			<div style="background:#2367d1;color:white;padding:6px 12px;border-radius:8px;margin-top:8px;font-weight:600;display:inline-block">📊 DASHBOARD - MAIN APP</div>
+		</div>
+		<div class="tag">7:00 AM Drop</div>
+	</div>
+	<div class="hero">
+		<div class="hero-card fade-in">
+			<h2>Local dairy, calm routines.</h2>
+			<p>Pick your daily milk plan and let the wallet auto-deduct every morning.</p>
+			<ul>
+				<li>City + village delivery zones</li>
+				<li>Transparent daily charges</li>
+				<li>Lightweight wallet top-ups</li>
+			</ul>
+		</div>
+		<div class="panel rise">
+			<h3 style="margin:0 0 6px">Today&apos;s Snapshot</h3>
+			<p style="margin:0 0 16px">We deliver before your tea is ready.</p>
+			<div class="row">
+				<div class="pill">Dawn Route</div>
+				<div class="pill">Farm chilled</div>
+				<div class="pill">Auto-deduct</div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="wave"></div>
+<div class="container">
+
+<div id="dashboard">
+	<div class="grid">
+		<div class="card">
+			<h3>👛 Wallet</h3>
+			<div class="wallet" id="wallet">₹0</div>
+			<label for="addMoney">Add funds</label>
+			<input id="addMoney" type="number" placeholder="Enter amount">
+			<div class="row" style="margin-top:10px">
+				<button onclick="openWalletRecharge()">💳 Recharge Wallet</button>
+			</div>
+			<div class="note">Tip: keep at least ₹200 for hassle-free delivery.</div>
+		</div>
+
+		<div class="card">
+			<div style="display:flex;justify-content:space-between;align-items:center">
+				<h3>🛒 Shopping Cart</h3>
+				<div style="position:relative">
+					<span style="font-size:24px">🛍️</span>
+					<span id="cartCount" class="cart-badge hidden">0</span>
+				</div>
+			</div>
+			<div id="cartEmpty" class="note" style="padding:20px;text-align:center">📦 Your cart is empty</div>
+			<div id="cartItems" class="cart-items hidden"></div>
+			<div id="cartTotal" class="hidden" style="margin-top:12px;padding-top:12px;border-top:2px solid #e6edf3">
+				<div style="display:flex;justify-content:space-between;font-weight:700;font-size:18px;margin-bottom:10px">
+					<span>Total:</span>
+					<span style="color:#1f6b4f">₹<span id="cartTotalAmount">0</span></span>
+				</div>
+				<button onclick="checkoutCart()" style="width:100%">✓ Checkout & Pay</button>
+				<button onclick="clearCart()" class="secondary" style="width:100%;margin-top:8px">Clear Cart</button>
+			</div>
+		</div>
+
+		<div class="card">
+			<h3>Delivery Area</h3>
+			<label for="area">Choose zone</label>
+			<select id="area" onchange="updateDelivery()">
+				<option value="5">Sangareddy Town ₹5</option>
+				<option value="8">Pothireddypally ₹8</option>
+				<option value="10">Isnapur ₹10</option>
+				<option value="15">Village ₹15</option>
+			</select>
+			<div class="row" style="margin-top:10px">
+				<div class="pill">Delivery Fee ₹<span id="delivery">5</span></div>
+			</div>
+			<div class="note">Zone fees cover ice packs + transport.</div>
+		</div>
+
+		<div class="card">
+			<h3>Next Delivery Countdown</h3>
+			<div id="countdown" class="countdown">--:--:--</div>
+			<div class="subtle">Delivery Time: 7:00 AM</div>
+		</div>
+
+		<div class="card">
+			<h3>Today&apos;s Deduction</h3>
+			<p class="note">Simulation for morning dispatch.</p>
+			<button onclick="simulateDay()">Run 7:00 AM Delivery</button>
+			<div id="log" class="log"></div>
+		</div>
+
+		<!-- Product Catalog -->
+		<div class="card full">
+			<h3>🏪 Product Catalog - Fresh Dairy Products</h3>
+			<div class="note">Add items to cart and checkout with your preferred payment method</div>
+			<div class="product-grid">
+				<!-- Milk Products -->
+				<div class="product-card" onclick="addToCart('Milk 500ml', 28, '🥛')">
+					<div class="product-icon">🥛</div>
+					<div class="product-name">Milk</div>
+					<div class="product-unit">500ml</div>
+					<div class="product-price">₹28</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Milk 500ml', 28, '🥛')">+ Add</button>
+				</div>
+				<div class="product-card" onclick="addToCart('Milk 1L', 54, '🥛')">
+					<div class="product-icon">🥛</div>
+					<div class="product-name">Milk</div>
+					<div class="product-unit">1 Liter</div>
+					<div class="product-price">₹54</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Milk 1L', 54, '🥛')">+ Add</button>
+				</div>
+				<!-- Curd/Yogurt -->
+				<div class="product-card" onclick="addToCart('Curd 500ml', 30, '🥣')">
+					<div class="product-icon">🥣</div>
+					<div class="product-name">Fresh Curd</div>
+					<div class="product-unit">500ml</div>
+					<div class="product-price">₹30</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Curd 500ml', 30, '🥣')">+ Add</button>
+				</div>
+				<div class="product-card" onclick="addToCart('Curd 1L', 58, '🥣')">
+					<div class="product-icon">🥣</div>
+					<div class="product-name">Fresh Curd</div>
+					<div class="product-unit">1 Liter</div>
+					<div class="product-price">₹58</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Curd 1L', 58, '🥣')">+ Add</button>
+				</div>
+				<!-- Butter -->
+				<div class="product-card" onclick="addToCart('Butter 100g', 45, '🧈')">
+					<div class="product-icon">🧈</div>
+					<div class="product-name">Fresh Butter</div>
+					<div class="product-unit">100g</div>
+					<div class="product-price">₹45</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Butter 100g', 45, '🧈')">+ Add</button>
+				</div>
+				<div class="product-card" onclick="addToCart('Butter 200g', 88, '🧈')">
+					<div class="product-icon">🧈</div>
+					<div class="product-name">Fresh Butter</div>
+					<div class="product-unit">200g</div>
+					<div class="product-price">₹88</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Butter 200g', 88, '🧈')">+ Add</button>
+				</div>
+				<!-- Ghee -->
+				<div class="product-card" onclick="addToCart('Pure Ghee 250ml', 180, '🥫')">
+					<div class="product-icon">🥫</div>
+					<div class="product-name">Pure Ghee</div>
+					<div class="product-unit">250ml</div>
+					<div class="product-price">₹180</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Pure Ghee 250ml', 180, '🥫')">+ Add</button>
+				</div>
+				<div class="product-card" onclick="addToCart('Pure Ghee 500ml', 350, '🥫')">
+					<div class="product-icon">🥫</div>
+					<div class="product-name">Pure Ghee</div>
+					<div class="product-unit">500ml</div>
+					<div class="product-price">₹350</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Pure Ghee 500ml', 350, '🥫')">+ Add</button>
+				</div>
+				<!-- Paneer -->
+				<div class="product-card" onclick="addToCart('Paneer 250g', 90, '🧀')">
+					<div class="product-icon">🧀</div>
+					<div class="product-name">Fresh Paneer</div>
+					<div class="product-unit">250g</div>
+					<div class="product-price">₹90</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Paneer 250g', 90, '🧀')">+ Add</button>
+				</div>
+				<div class="product-card" onclick="addToCart('Paneer 500g', 175, '🧀')">
+					<div class="product-icon">🧀</div>
+					<div class="product-name">Fresh Paneer</div>
+					<div class="product-unit">500g</div>
+					<div class="product-price">₹175</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Paneer 500g', 175, '🧀')">+ Add</button>
+				</div>
+				<!-- Lassi -->
+				<div class="product-card" onclick="addToCart('Sweet Lassi 200ml', 25, '🥤')">
+					<div class="product-icon">🥤</div>
+					<div class="product-name">Sweet Lassi</div>
+					<div class="product-unit">200ml</div>
+					<div class="product-price">₹25</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Sweet Lassi 200ml', 25, '🥤')">+ Add</button>
+				</div>
+				<div class="product-card" onclick="addToCart('Buttermilk 500ml', 20, '🥛')">
+					<div class="product-icon">🥛</div>
+					<div class="product-name">Buttermilk</div>
+					<div class="product-unit">500ml</div>
+					<div class="product-price">₹20</div>
+					<button class="add-to-cart" onclick="event.stopPropagation();addToCart('Buttermilk 500ml', 20, '🥛')">+ Add</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="card full">
+			<h3>Order History</h3>
+			<div class="note">Daily records build trust in wallet deductions.</div>
+			<div id="historyEmpty" class="note" style="margin-top:10px">No deliveries yet. Run a 7:00 AM simulation to add a record.</div>
+			<table class="history-table" aria-label="Order history">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Item</th>
+						<th>Qty</th>
+						<th>Delivery Fee</th>
+						<th>Total</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody id="historyBody"></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<!-- Payment Modal -->
+<div id="paymentModal" class="modal hidden">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3 id="paymentModalTitle">💳 Make Payment</h3>
+			<button class="close-btn" onclick="closePaymentModal()">×</button>
+		</div>
+		
+		<div style="text-align:center;margin-bottom:20px">
+			<div style="font-size:32px;font-weight:700;color:#1f6b4f">₹<span id="modalAmount">0</span></div>
+			<div class="note" id="paymentPurpose">Amount to pay</div>
+		</div>
+		
+		<div class="payment-tabs">
+			<button class="payment-tab active" onclick="switchPaymentTab('qr')">📱 QR Code</button>
+			<button class="payment-tab" onclick="switchPaymentTab('upi')">🔗 UPI</button>
+			<button class="payment-tab" onclick="switchPaymentTab('card')">💳 Card</button>
+		</div>
+		
+		<!-- QR Code Payment -->
+		<div id="qrSection" class="payment-section">
+			<div class="qr-code">
+				<div style="font-weight:600;margin-bottom:8px">Scan to Pay</div>
+				<img id="qrImage" src="payment-qr.png" alt="Payment QR Code" style="width:200px;height:200px;object-fit:contain;">
+				<div class="upi-id">sangareddy.milk@paytm</div>
+				<div style="margin-top:8px;font-size:13px;color:#5c6b76">Amount: ₹<span class="modalAmountText">0</span></div>
+			</div>
+			<div class="payment-info">
+				✓ Scan using any UPI app (GPay, PhonePe, Paytm)<br>
+				✓ Complete payment and click confirm below
+			</div>
+			<button onclick="confirmPayment('QR')">✓ I've Paid via QR</button>
+		</div>
+		
+		<!-- UPI Payment -->
+		<div id="upiSection" class="payment-section hidden">
+			<label>UPI ID</label>
+			<div class="upi-id" style="margin-top:8px">sangareddy.milk@paytm</div>
+			<label style="margin-top:16px">Or enter your UPI ID</label>
+			<input id="upiId" type="text" placeholder="yourname@upi">
+			<div class="payment-info" style="margin-top:12px">
+				✓ Copy the UPI ID: sangareddy.milk@paytm<br>
+				✓ Open your UPI app and send ₹<span class="modalAmountText">0</span><br>
+				✓ Or enter your UPI ID to receive payment request
+			</div>
+			<button onclick="confirmPayment('UPI')">✓ Send Payment Request</button>
+		</div>
+		
+		<!-- Card Payment -->
+		<div id="cardSection" class="payment-section hidden">
+			<label>Card Number</label>
+			<input id="cardNumber" type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+			<div class="row" style="gap:12px;margin-top:12px">
+				<div style="flex:1">
+					<label>Expiry</label>
+					<input id="cardExpiry" type="text" placeholder="MM/YY" maxlength="5">
+				</div>
+				<div style="flex:1">
+					<label>CVV</label>
+					<input id="cardCvv" type="text" placeholder="123" maxlength="3">
+				</div>
+			</div>
+			<label style="margin-top:12px">Cardholder Name</label>
+			<input id="cardName" type="text" placeholder="Name on card">
+			<div class="payment-info" style="margin-top:12px">
+				🔒 Secure payment gateway<br>
+				✓ We accept Visa, Mastercard, RuPay
+			</div>
+			<button onclick="confirmPayment('Card')">✓ Pay ₹<span class="modalAmountText">0</span></button>
+		</div>
+		
+		<button class="secondary" onclick="closePaymentModal()" style="width:100%;margin-top:12px">Cancel</button>
+	</div>
+</div>
+
+<script>
+const API_BASE = window.location.origin === "null" ? "http://localhost:8080" : "";
+let userId = null;
+let subscription = null;
+let countdownTimer = null;
+let currentPaymentType = null;
+let currentPaymentCallback = null;
+let cart = [];
+
+function apiFetch(path, options) {
+	const opts = options || {};
+	opts.headers = Object.assign({ "Content-Type": "application/json" }, opts.headers || {});
+	return fetch(API_BASE + path, opts).then(async (res) => {
+		if (!res.ok) {
+			let msg = "Request failed";
+			try {
+				const text = await res.text();
+				if (text) msg = text;
+			} catch (err) {
+				msg = "Request failed";
+			}
+			throw new Error(msg);
+		}
+		if (res.status === 204) return null;
+		return res.json();
+	});
+}
+
+function hydrateUser(data) {
+	document.getElementById("wallet").innerText = "₹" + data.walletBalance;
+	document.getElementById("delivery").innerText = data.deliveryFee;
+	const areaSelect = document.getElementById("area");
+	if (areaSelect) {
+		areaSelect.value = String(data.deliveryFee);
+	}
+	if (data.subscription) {
+		const milkSelect = document.getElementById("milkType");
+		milkSelect.value = String(data.subscription.price);
+		document.getElementById("qty").value = data.subscription.qty;
+	}
+}
+
+function loadSession() {
+	startCountdown();
+	const id = localStorage.getItem("milkUserId");
+	if (!id) {
+		// Redirect to landing page if not logged in
+		window.location.href = '/landing.html';
+		return;
+	}
+	apiFetch("/api/users/" + id).then((data) => {
+		userId = data.id;
+		subscription = data.subscription || null;
+		hydrateUser(data);
+		loadHistory();
+	}).catch(() => {
+		localStorage.removeItem("milkUserId");
+		window.location.href = '/landing.html';
+	});
+}
+
+function openPaymentModal(amount, title, purpose, paymentType, callback) {
+	if (!userId) {
+		alert("Please login first");
+		return;
+	}
+	if (!amount || amount <= 0) {
+		alert("Please enter a valid amount");
+		return;
+	}
+	
+	currentPaymentType = paymentType || 'wallet';
+	currentPaymentCallback = callback || null;
+	
+	// Update modal content
+	document.getElementById("paymentModalTitle").innerText = title || "💳 Make Payment";
+	document.getElementById("paymentPurpose").innerText = purpose || "Amount to pay";
+	document.getElementById("modalAmount").innerText = amount;
+	document.querySelectorAll(".modalAmountText").forEach(el => el.innerText = amount);
+	
+	// Show payment modal
+	document.getElementById("paymentModal").classList.remove("hidden");
+	switchPaymentTab('qr');
+}
+
+function openWalletRecharge() {
+	const amt = parseInt(document.getElementById("addMoney").value, 10);
+	if (!amt || amt <= 0) {
+		alert("Please enter recharge amount");
+		return;
+	}
+	openPaymentModal(
+		amt,
+		"💰 Recharge Wallet",
+		"Add funds to your wallet",
+		"wallet",
+		function(amount, method) {
+			apiFetch("/api/users/" + userId + "/wallet/recharge", {
+				method: "POST",
+				body: JSON.stringify({ amount: amount })
+			}).then((data) => {
+				hydrateUser(data);
+				document.getElementById("addMoney").value = "";
+				closePaymentModal();
+				alert(`✓ Wallet recharged ₹${amount} via ${method}!`);
+			}).catch((err) => alert(err.message));
+		}
+	);
+}
+
+function closePaymentModal() {
+	document.getElementById("paymentModal").classList.add("hidden");
+	// Clear form fields
+	document.getElementById("upiId").value = "";
+	document.getElementById("cardNumber").value = "";
+	document.getElementById("cardExpiry").value = "";
+	document.getElementById("cardCvv").value = "";
+	document.getElementById("cardName").value = "";
+}
+
+function switchPaymentTab(tab) {
+	document.querySelectorAll(".payment-tab").forEach(t => t.classList.remove("active"));
+	document.querySelectorAll(".payment-section").forEach(s => s.classList.add("hidden"));
+	
+	if (tab === 'qr') {
+		document.querySelectorAll(".payment-tab")[0].classList.add("active");
+		document.getElementById("qrSection").classList.remove("hidden");
+	} else if (tab === 'upi') {
+		document.querySelectorAll(".payment-tab")[1].classList.add("active");
+		document.getElementById("upiSection").classList.remove("hidden");
+	} else if (tab === 'card') {
+		document.querySelectorAll(".payment-tab")[2].classList.add("active");
+		document.getElementById("cardSection").classList.remove("hidden");
+	}
+}
+
+function confirmPayment(method) {
+	if (!userId) return;
+	const amt = parseInt(document.getElementById("modalAmount").innerText, 10);
+	
+	if (method === 'Card') {
+		const cardNum = document.getElementById("cardNumber").value;
+		const expiry = document.getElementById("cardExpiry").value;
+		const cvv = document.getElementById("cardCvv").value;
+		const name = document.getElementById("cardName").value;
+		
+		if (!cardNum || !expiry || !cvv || !name) {
+			return alert("Please fill all card details");
+		}
+	}
+	
+	// Execute the payment callback if provided
+	if (currentPaymentCallback && typeof currentPaymentCallback === 'function') {
+		currentPaymentCallback(amt, method);
+	} else {
+		// Default action - recharge wallet
+		apiFetch("/api/users/" + userId + "/wallet/recharge", {
+			method: "POST",
+			body: JSON.stringify({ amount: amt })
+		}).then((data) => {
+			hydrateUser(data);
+			document.getElementById("addMoney").value = "";
+			closePaymentModal();
+			alert(`✓ Payment of ₹${amt} completed via ${method}!`);
+		}).catch((err) => alert(err.message));
+	}
+}
+
+function addWallet() {
+	openWalletRecharge();
+}
+
+// Shopping Cart Functions
+function addToCart(productName, price, icon) {
+	const existingItem = cart.find(item => item.name === productName);
+	if (existingItem) {
+		existingItem.quantity++;
+	} else {
+		cart.push({ name: productName, price: price, quantity: 1, icon: icon });
+	}
+	updateCartDisplay();
+}
+
+function removeFromCart(productName) {
+	const index = cart.findIndex(item => item.name === productName);
+	if (index > -1) {
+		if (cart[index].quantity > 1) {
+			cart[index].quantity--;
+		} else {
+			cart.splice(index, 1);
+		}
+		updateCartDisplay();
+	}
+}
+
+function clearCart() {
+	if (cart.length === 0) return;
+	if (confirm('Clear all items from cart?')) {
+		cart = [];
+		updateCartDisplay();
+	}
+}
+
+function updateCartDisplay() {
+	const cartItems = document.getElementById('cartItems');
+	const cartEmpty = document.getElementById('cartEmpty');
+	const cartTotal = document.getElementById('cartTotal');
+	const cartCount = document.getElementById('cartCount');
+	const cartTotalAmount = document.getElementById('cartTotalAmount');
+	
+	if (cart.length === 0) {
+		cartEmpty.classList.remove('hidden');
+		cartItems.classList.add('hidden');
+		cartTotal.classList.add('hidden');
+		cartCount.classList.add('hidden');
+		return;
+	}
+	
+	cartEmpty.classList.add('hidden');
+	cartItems.classList.remove('hidden');
+	cartTotal.classList.remove('hidden');
+	cartCount.classList.remove('hidden');
+	
+	let total = 0;
+	let html = '';
+	cart.forEach(item => {
+		const itemTotal = item.price * item.quantity;
+		total += itemTotal;
+		html += `
+			<div class="cart-item">
+				<div>
+					<span style="font-size:18px">${item.icon}</span>
+					<strong>${item.name}</strong>
+					<div style="font-size:12px;color:#5c6b76">₹${item.price} x ${item.quantity}</div>
+				</div>
+				<div style="display:flex;align-items:center;gap:8px">
+					<button onclick="removeFromCart('${item.name}')" class="secondary" style="padding:4px 8px;font-size:12px">−</button>
+					<span style="font-weight:700;color:#1f6b4f">₹${itemTotal}</span>
+				</div>
+			</div>
+		`;
+	});
+	
+	cartItems.innerHTML = html;
+	cartTotalAmount.innerText = total;
+	cartCount.innerText = cart.length;
+}
+
+function checkoutCart() {
+	if (cart.length === 0) {
+		alert('Your cart is empty!');
+		return;
+	}
+	
+	const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+	const itemsList = cart.map(item => `${item.quantity}x ${item.name}`).join(', ');
+	
+	openPaymentModal(
+		total,
+		"🛍️ Checkout - Order Payment",
+		`Order: ${itemsList}`,
+		"order",
+		function(amount, method) {
+			// Wallet deduction for order
+			apiFetch("/api/users/" + userId + "/wallet/recharge", {
+				method: "POST",
+				body: JSON.stringify({ amount: -amount }) // Negative to deduct
+			}).then((data) => {
+				hydrateUser(data);
+				closePaymentModal();
+				alert(`✓ Order placed successfully! Paid ₹${amount} via ${method}\n\nItems: ${itemsList}`);
+				cart = [];
+				updateCartDisplay();
+				loadHistory();
+			}).catch((err) => {
+				closePaymentModal();
+				alert('Payment failed: ' + err.message);
+			});
+		}
+	);
+}
+
+function subscribe() {
+	if (!userId) return;
+	const price = parseInt(document.getElementById("milkType").value, 10);
+	const qty = parseInt(document.getElementById("qty").value, 10);
+	if (!qty || qty <= 0) return alert("Enter quantity");
+	const milkType = price === 28 ? "Milk 500ml" : price === 54 ? "Milk 1L" : "Milk";
+	const total = price * qty;
+	
+	// Option: Show payment modal for subscription
+	openPaymentModal(
+		total,
+		"🥛 Subscribe to Milk Delivery",
+		`Subscribe: ${qty}x ${milkType} @ ₹${price}`,
+		"subscription",
+		function(amount, method) {
+			apiFetch("/api/users/" + userId + "/subscription", {
+				method: "POST",
+				body: JSON.stringify({ milkType, price, qty })
+			}).then((data) => {
+				subscription = data;
+				closePaymentModal();
+				alert(`✓ Subscribed successfully! Payment of ₹${amount} via ${method}`);
+			}).catch((err) => {
+				closePaymentModal();
+				alert(err.message);
+			});
+		}
+	);
+}
+
+function updateDelivery() {
+	if (!userId) return;
+	const select = document.getElementById("area");
+	const fee = parseInt(select.value, 10);
+	const area = select.options[select.selectedIndex].text.split("₹")[0].trim();
+	apiFetch("/api/users/" + userId + "/delivery", {
+		method: "PUT",
+		body: JSON.stringify({ area, fee })
+	}).then((data) => {
+		hydrateUser(data);
+	}).catch((err) => alert(err.message));
+}
+
+function simulateDay() {
+	if (!userId) return;
+	fetch(API_BASE + "/api/users/" + userId + "/simulate", { method: "POST" })
+		.then(async (res) => {
+			if (res.status === 400) {
+				document.getElementById("log").innerHTML = "❌ No subscription";
+				return null;
+			}
+			if (!res.ok) throw new Error("Simulation failed");
+			return res.json();
+		})
+		.then((data) => {
+			if (!data) return;
+			document.getElementById("wallet").innerText = "₹" + data.walletBalance;
+			document.getElementById("log").innerHTML = data.status === "Delivered"
+				? "✅ " + data.message
+				: "❌ " + data.message;
+			loadHistory();
+		})
+		.catch(() => {
+			document.getElementById("log").innerHTML = "❌ Simulation failed";
+		});
+}
+
+function loadHistory() {
+	if (!userId) return;
+	apiFetch("/api/users/" + userId + "/orders").then((orders) => {
+		renderHistory(orders || []);
+	});
+}
+
+function renderHistory(history) {
+	const body = document.getElementById("historyBody");
+	const empty = document.getElementById("historyEmpty");
+	body.innerHTML = "";
+	if (!history.length) {
+		empty.style.display = "block";
+		return;
+	}
+	empty.style.display = "none";
+	history.forEach((entry) => {
+		const statusClass = entry.status === "Delivered" ? "success" : "fail";
+		const row = "<tr>"
+			+ "<td>" + entry.date + "</td>"
+			+ "<td>" + entry.item + "</td>"
+			+ "<td>" + entry.qty + "</td>"
+			+ "<td>₹" + entry.deliveryFee + "</td>"
+			+ "<td>₹" + entry.total + "</td>"
+			+ "<td><span class=\"status " + statusClass + "\">" + entry.status + "</span></td>"
+			+ "</tr>";
+		body.insertAdjacentHTML("beforeend", row);
+	});
+}
+
+function startCountdown() {
+	if (countdownTimer) return;
+	updateCountdown();
+	countdownTimer = setInterval(updateCountdown, 1000);
+}
+
+function updateCountdown() {
+	const el = document.getElementById("countdown");
+	if (!el) return;
+	const now = new Date();
+	const target = new Date();
+	target.setHours(7, 0, 0, 0);
+	if (now.getTime() >= target.getTime()) {
+		target.setDate(target.getDate() + 1);
+	}
+	const diff = target - now;
+	const totalSeconds = Math.floor(diff / 1000);
+	const hours = Math.floor(totalSeconds / 3600);
+	const minutes = Math.floor((totalSeconds % 3600) / 60);
+	const seconds = totalSeconds % 60;
+	const hh = String(hours).padStart(2, "0");
+	const mm = String(minutes).padStart(2, "0");
+	const ss = String(seconds).padStart(2, "0");
+	el.textContent = hh + "h " + mm + "m " + ss + "s";
+}
+
+loadSession();
+</script>
+</body>
+</html>

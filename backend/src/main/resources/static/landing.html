@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Sangareddy Milk - Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+	--ink:#0b1f2a;
+	--milk:#f7f3ea;
+	--cream:#f5dfb2;
+	--leaf:#1f6b4f;
+	--sky:#b4d7ff;
+	--primary:#2367d1;
+	--card:#ffffff;
+	--shadow:0 10px 30px rgba(11,31,42,.12);
+}
+*{box-sizing:border-box}
+body{
+	margin:0;
+	color:var(--ink);
+	font-family:"Space Grotesk",sans-serif;
+	background:
+		radial-gradient(1200px 600px at 10% -10%, #fff5d6 0%, transparent 60%),
+		radial-gradient(900px 500px at 90% 0%, #d7efff 0%, transparent 55%),
+		linear-gradient(160deg, #fbfbff 0%, #f4f7ff 30%, #fff8ed 100%);
+	min-height:100vh;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:20px;
+}
+.container{
+	max-width:480px;
+	width:100%;
+}
+.card{
+	background:var(--card);
+	border-radius:24px;
+	padding:40px;
+	box-shadow:var(--shadow);
+	position:relative;
+	overflow:hidden;
+}
+.card:before{
+	content:"";
+	position:absolute;
+	inset:-8px -8px auto auto;
+	width:140px;
+	height:140px;
+	border-radius:50%;
+	background:radial-gradient(circle at 30% 30%, #ffffff 0%, #ffe0a5 60%, transparent 70%);
+	opacity:.6;
+	pointer-events:none;
+}
+.logo{
+	text-align:center;
+	margin-bottom:32px;
+}
+.logo h1{
+	margin:0 0 8px;
+	font-family:"Playfair Display",serif;
+	font-size:clamp(32px,5vw,42px);
+	letter-spacing:.3px;
+	color:var(--ink);
+}
+.logo p{
+	margin:0;
+	color:#5c6b76;
+	font-size:15px;
+}
+.tabs{
+	display:flex;
+	gap:12px;
+	margin-bottom:28px;
+	background:#f6f9fc;
+	padding:6px;
+	border-radius:14px;
+}
+.tab{
+	flex:1;
+	padding:10px;
+	border:none;
+	border-radius:10px;
+	font-family:"Space Grotesk",sans-serif;
+	font-weight:600;
+	font-size:15px;
+	cursor:pointer;
+	background:transparent;
+	color:#5c6b76;
+	transition:all .3s ease;
+}
+.tab.active{
+	background:white;
+	color:var(--primary);
+	box-shadow:0 4px 12px rgba(35,103,209,.12);
+}
+.form{
+	position:relative;
+}
+.form-group{
+	margin-bottom:18px;
+}
+.form label{
+	display:block;
+	margin-bottom:8px;
+	font-weight:600;
+	color:#2c3c46;
+	font-size:14px;
+}
+.form input{
+	width:100%;
+	padding:12px 14px;
+	border-radius:12px;
+	border:1px solid #d9e2ea;
+	font-family:"Space Grotesk",sans-serif;
+	font-size:15px;
+	background:#fff;
+	transition:border-color .3s ease;
+}
+.form input:focus{
+	outline:none;
+	border-color:var(--primary);
+}
+.btn{
+	width:100%;
+	padding:14px;
+	border-radius:12px;
+	border:none;
+	font-family:"Space Grotesk",sans-serif;
+	font-weight:600;
+	font-size:16px;
+	cursor:pointer;
+	background:linear-gradient(135deg, #2367d1 0%, #3aa3ff 100%);
+	color:white;
+	box-shadow:0 10px 20px rgba(35,103,209,.18);
+	transition:transform .2s ease, box-shadow .2s ease;
+	margin-top:10px;
+}
+.btn:hover{
+	transform:translateY(-2px);
+	box-shadow:0 14px 28px rgba(35,103,209,.25);
+}
+.btn:active{
+	transform:translateY(0);
+}
+.note{
+	text-align:center;
+	margin-top:20px;
+	color:#5c6b76;
+	font-size:13px;
+}
+.note a{
+	color:var(--primary);
+	text-decoration:none;
+	font-weight:600;
+}
+.note a:hover{
+	text-decoration:underline;
+}
+.hidden{
+	display:none;
+}
+.error{
+	background:#fdecea;
+	color:#b3261e;
+	padding:10px 14px;
+	border-radius:10px;
+	font-size:14px;
+	margin-bottom:16px;
+	display:none;
+}
+.success{
+	background:#e8f5e9;
+	color:#1f6b4f;
+	padding:10px 14px;
+	border-radius:10px;
+	font-size:14px;
+	margin-bottom:16px;
+	display:none;
+}
+.fade-in{
+	animation:fadeIn .5s ease both;
+}
+@keyframes fadeIn{
+	from{opacity:0;transform:translateY(20px)}
+	to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+<div class="container fade-in">
+	<div class="card">
+		<div class="logo">
+			<h1>🥛 Sangareddy Milk</h1>
+			<p>Fresh dairy delivered daily</p>
+			<div style="background:#059669;color:white;padding:8px;border-radius:8px;margin-top:12px;font-weight:600;text-align:center">✨ LANDING PAGE - LOGIN/SIGNUP ✨</div>
+		</div>
+
+		<div class="tabs">
+			<button class="tab active" onclick="showTab('login')">Login</button>
+			<button class="tab" onclick="showTab('signup')">Sign Up</button>
+		</div>
+
+		<div id="error" class="error"></div>
+		<div id="success" class="success"></div>
+
+		<!-- Login Form -->
+		<form id="loginForm" class="form" onsubmit="handleLogin(event)">
+			<div class="form-group">
+				<label for="loginName">Name</label>
+				<input type="text" id="loginName" placeholder="Enter your name" required>
+			</div>
+			<button type="submit" class="btn">Login to Dashboard</button>
+		</form>
+
+		<!-- Signup Form -->
+		<form id="signupForm" class="form hidden" onsubmit="handleSignup(event)">
+			<div class="form-group">
+				<label for="signupName">Full Name</label>
+				<input type="text" id="signupName" placeholder="Enter your full name" required>
+			</div>
+			<div class="form-group">
+				<label for="signupEmail">Email</label>
+				<input type="email" id="signupEmail" placeholder="your@email.com" required>
+			</div>
+			<div class="form-group">
+				<label for="signupPhone">Phone Number</label>
+				<input type="tel" id="signupPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+			</div>
+			<div class="form-group">
+				<label for="signupAddress">Delivery Address</label>
+				<input type="text" id="signupAddress" placeholder="Your delivery location" required>
+			</div>
+			<button type="submit" class="btn">Create Account</button>
+		</form>
+
+		<div class="note">
+			By continuing, you agree to our Terms of Service
+		</div>
+	</div>
+</div>
+
+<script>
+const API_BASE = window.location.origin === "null" ? "http://localhost:8080" : "";
+
+function showTab(tab) {
+	const loginForm = document.getElementById('loginForm');
+	const signupForm = document.getElementById('signupForm');
+	const tabs = document.querySelectorAll('.tab');
+	
+	hideMessages();
+	
+	tabs.forEach(t => t.classList.remove('active'));
+	
+	if (tab === 'login') {
+		tabs[0].classList.add('active');
+		loginForm.classList.remove('hidden');
+		signupForm.classList.add('hidden');
+	} else {
+		tabs[1].classList.add('active');
+		loginForm.classList.add('hidden');
+		signupForm.classList.remove('hidden');
+	}
+}
+
+function showError(message) {
+	const error = document.getElementById('error');
+	error.textContent = message;
+	error.style.display = 'block';
+	setTimeout(() => {
+		error.style.display = 'none';
+	}, 4000);
+}
+
+function showSuccess(message) {
+	const success = document.getElementById('success');
+	success.textContent = message;
+	success.style.display = 'block';
+	setTimeout(() => {
+		success.style.display = 'none';
+	}, 3000);
+}
+
+function hideMessages() {
+	document.getElementById('error').style.display = 'none';
+	document.getElementById('success').style.display = 'none';
+}
+
+function handleLogin(event) {
+	event.preventDefault();
+	const name = document.getElementById('loginName').value.trim();
+	
+	if (!name) {
+		showError('Please enter your name');
+		return;
+	}
+	
+	fetch(API_BASE + '/api/users/login', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ name })
+	})
+	.then(async (res) => {
+		if (!res.ok) {
+			const text = await res.text();
+			throw new Error(text || 'Login failed');
+		}
+		return res.json();
+	})
+	.then((data) => {
+		localStorage.setItem('milkUserId', String(data.id));
+		localStorage.setItem('milkUserName', data.name);
+		showSuccess('Login successful! Redirecting...');
+		setTimeout(() => {
+			window.location.href = '/dashboard.html';
+		}, 1000);
+	})
+	.catch((err) => {
+		showError(err.message);
+	});
+}
+
+function handleSignup(event) {
+	event.preventDefault();
+	const name = document.getElementById('signupName').value.trim();
+	const email = document.getElementById('signupEmail').value.trim();
+	const phone = document.getElementById('signupPhone').value.trim();
+	const address = document.getElementById('signupAddress').value.trim();
+	
+	if (!name || !email || !phone || !address) {
+		showError('Please fill in all fields');
+		return;
+	}
+	
+	// Create account by logging in with name (simplified for this app)
+	fetch(API_BASE + '/api/users/login', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ name })
+	})
+	.then(async (res) => {
+		if (!res.ok) {
+			const text = await res.text();
+			throw new Error(text || 'Signup failed');
+		}
+		return res.json();
+	})
+	.then((data) => {
+		localStorage.setItem('milkUserId', String(data.id));
+		localStorage.setItem('milkUserName', data.name);
+		showSuccess('Account created! Redirecting...');
+		setTimeout(() => {
+			window.location.href = '/dashboard.html';
+		}, 1000);
+	})
+	.catch((err) => {
+		showError(err.message);
+	});
+}
+
+// Check if already logged in
+const userId = localStorage.getItem('milkUserId');
+if (userId) {
+	window.location.href = '/dashboard.html';
+}
+</script>
+</body>
+</html>

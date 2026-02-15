@@ -4,82 +4,372 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sangareddy Milk Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:"Space Grotesk",sans-serif;background:#f4f7fb;color:#0b1f2a}
-header{padding:20px;background:#0f3b57;color:#fff}
-.container{max-width:1100px;margin:20px auto;padding:0 20px}
-.card{background:#fff;padding:16px;border-radius:14px;box-shadow:0 10px 30px rgba(11,31,42,.08);margin-bottom:18px}
-button{background:#2367d1;color:#fff;border:0;padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer}
-.table{width:100%;border-collapse:collapse;font-size:14px}
-.table th,.table td{padding:10px 12px;border-bottom:1px solid #e6edf3;text-align:left}
-.table th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#4c5c66}
-.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600}
-.badge.ok{background:#e8f5e9;color:#1f6b4f}
-.badge.fail{background:#fdecea;color:#b3261e}
+:root{
+	--ink:#0b1f2a;
+	--primary:#0f3b57;
+	--accent:#2367d1;
+	--success:#1f6b4f;
+	--warning:#f59e0b;
+	--danger:#b3261e;
+}
+*{box-sizing:border-box}
+body{
+	margin:0;
+	font-family:"Space Grotesk",sans-serif;
+	background:linear-gradient(135deg, #f4f7fb 0%, #e8eef6 100%);
+	color:var(--ink);
+}
+header{
+	padding:24px 20px;
+	background:linear-gradient(135deg, var(--primary) 0%, #1d4a62 100%);
+	color:#fff;
+	box-shadow:0 4px 12px rgba(15,59,87,.15);
+}
+header h1{
+	margin:0 0 8px;
+	font-family:"Playfair Display",serif;
+	font-size:32px;
+	font-weight:700;
+}
+header p{
+	margin:0;
+	opacity:.85;
+	font-size:15px;
+}
+.container{
+	max-width:1400px;
+	margin:24px auto;
+	padding:0 20px;
+}
+.stats{
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+	gap:18px;
+	margin-bottom:24px;
+}
+.stat-card{
+	background:white;
+	padding:20px;
+	border-radius:16px;
+	box-shadow:0 4px 12px rgba(11,31,42,.08);
+	border-left:4px solid var(--accent);
+}
+.stat-card h3{
+	margin:0 0 8px;
+	font-size:14px;
+	text-transform:uppercase;
+	letter-spacing:.5px;
+	color:#5c6b76;
+	font-weight:600;
+}
+.stat-card .value{
+	font-size:32px;
+	font-weight:700;
+	color:var(--ink);
+	margin:0;
+}
+.card{
+	background:#fff;
+	padding:24px;
+	border-radius:16px;
+	box-shadow:0 4px 16px rgba(11,31,42,.1);
+	margin-bottom:24px;
+}
+.card h2{
+	margin:0 0 20px;
+	font-size:22px;
+	font-weight:700;
+	color:var(--ink);
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+}
+button{
+	background:linear-gradient(135deg, var(--accent) 0%, #3aa3ff 100%);
+	color:#fff;
+	border:0;
+	padding:10px 18px;
+	border-radius:12px;
+	font-weight:600;
+	cursor:pointer;
+	font-size:15px;
+	transition:transform .2s ease, box-shadow .2s ease;
+	box-shadow:0 4px 12px rgba(35,103,209,.2);
+}
+button:hover{
+	transform:translateY(-2px);
+	box-shadow:0 6px 18px rgba(35,103,209,.3);
+}
+button:active{
+	transform:translateY(0);
+}
+button.danger{
+	background:linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+	box-shadow:0 4px 12px rgba(220,38,38,.2);
+}
+button.danger:hover{
+	box-shadow:0 6px 18px rgba(220,38,38,.3);
+}
+button.success{
+	background:linear-gradient(135deg, #059669 0%, #047857 100%);
+	box-shadow:0 4px 12px rgba(5,150,105,.2);
+}
+button.success:hover{
+	box-shadow:0 6px 18px rgba(5,150,105,.3);
+}
+.action-buttons{
+	display:flex;
+	gap:12px;
+	flex-wrap:wrap;
+}
+.table{
+	width:100%;
+	border-collapse:collapse;
+	font-size:14px;
+}
+.table th,.table td{
+	padding:14px 16px;
+	border-bottom:1px solid #e6edf3;
+	text-align:left;
+}
+.table th{
+	font-size:12px;
+	text-transform:uppercase;
+	letter-spacing:.6px;
+	color:#4c5c66;
+	background:#f8fafb;
+	font-weight:700;
+}
+.table tbody tr{
+	transition:background-color .2s ease;
+}
+.table tbody tr:hover{
+	background-color:#f9fbfc;
+}
+.badge{
+	display:inline-block;
+	padding:4px 12px;
+	border-radius:999px;
+	font-size:12px;
+	font-weight:700;
+	text-transform:uppercase;
+	letter-spacing:.4px;
+}
+.badge.ok{
+	background:#e8f5e9;
+	color:var(--success);
+}
+.badge.fail{
+	background:#fdecea;
+	color:var(--danger);
+}
+.badge.pending{
+	background:#fff4e6;
+	color:var(--warning);
+}
+.empty-state{
+	text-align:center;
+	padding:40px 20px;
+	color:#5c6b76;
+}
+.empty-state svg{
+	width:64px;
+	height:64px;
+	opacity:.3;
+	margin-bottom:16px;
+}
+.refresh-btn{
+	display:flex;
+	align-items:center;
+	gap:8px;
+}
+.tabs{
+	display:flex;
+	gap:12px;
+	margin-bottom:20px;
+	border-bottom:2px solid #e6edf3;
+}
+.tab{
+	padding:12px 20px;
+	background:transparent;
+	border:none;
+	border-bottom:3px solid transparent;
+	color:#5c6b76;
+	font-weight:600;
+	cursor:pointer;
+	transition:all .3s ease;
+	box-shadow:none;
+}
+.tab:hover{
+	transform:none;
+	color:var(--accent);
+	box-shadow:none;
+}
+.tab.active{
+	color:var(--accent);
+	border-bottom-color:var(--accent);
+	box-shadow:none;
+}
 </style>
 </head>
 <body>
 <header>
-	<h2>Admin Dashboard</h2>
+	<h1>🥛 Admin Dashboard</h1>
+	<p>Monitor orders and manage your milk delivery system</p>
 </header>
 <div class="container">
-	<div class="card">
-		<button onclick="loadData()">Refresh Data</button>
+	<div class="stats">
+		<div class="stat-card">
+			<h3>Total Users</h3>
+			<p class="value" id="totalUsers">0</p>
+		</div>
+		<div class="stat-card">
+			<h3>Active Subscriptions</h3>
+			<p class="value" id="activeSubscriptions">0</p>
+		</div>
+		<div class="stat-card">
+			<h3>Total Orders</h3>
+			<p class="value" id="totalOrders">0</p>
+		</div>
+		<div class="stat-card">
+			<h3>Today's Revenue</h3>
+			<p class="value" id="todayRevenue">₹0</p>
+		</div>
 	</div>
+
 	<div class="card">
-		<h3>Users</h3>
-		<table class="table">
+		<h2>
+			<span>📦 All Booked Orders</span>
+			<div class="action-buttons">
+				<button onclick="downloadOrdersData()" class="success">
+					<span>⬇️</span> Download Data
+				</button>
+				<button onclick="clearAllOrders()" class="danger">
+					<span>🗑️</span> Clear All Orders
+				</button>
+				<button onclick="loadData()" class="refresh-btn">
+					<span>🔄</span> Refresh
+				</button>
+			</div>
+		</h2>
+		<div class="tabs">
+			<button class="tab active" onclick="filterOrders('all')">All Orders</button>
+			<button class="tab" onclick="filterOrders('Delivered')">Delivered</button>
+			<button class="tab" onclick="filterOrders('Failed')">Failed</button>
+		</div>
+		<div id="ordersEmpty" class="empty-state" style="display:none">
+			<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+			<p>No orders found</p>
+		</div>
+		<table class="table" id="ordersTable">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Wallet</th>
-					<th>Delivery</th>
-					<th>Subscription</th>
-				</tr>
-			</thead>
-			<tbody id="usersBody"></tbody>
-		</table>
-	</div>
-	<div class="card">
-		<h3>Recent Orders</h3>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Date</th>
-					<th>User</th>
+					<th>Order ID</th>
+					<th>Date & Time</th>
+					<th>Customer</th>
 					<th>Item</th>
-					<th>Qty</th>
-					<th>Total</th>
+					<th>Quantity</th>
+					<th>Delivery Fee</th>
+					<th>Total Amount</th>
 					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody id="ordersBody"></tbody>
 		</table>
 	</div>
+
+	<div class="card">
+		<h2>
+			<span>👥 All Users & Subscriptions</span>
+			<div class="action-buttons">
+				<button onclick="downloadUsersData()" class="success">
+					<span>⬇️</span> Download Users
+				</button>
+			</div>
+		</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>User ID</th>
+					<th>Name</th>
+					<th>Wallet Balance</th>
+					<th>Delivery Area</th>
+					<th>Delivery Fee</th>
+					<th>Subscription</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody id="usersBody"></tbody>
+		</table>
+	</div>
 </div>
 <script>
+const API_BASE = window.location.origin === "null" ? "http://localhost:8080" : "";
+let allOrders = [];
+let allUsers = [];
+let currentFilter = 'all';
+
 function apiFetch(path) {
-	return fetch(path).then((res) => res.json());
+	return fetch(API_BASE + path).then((res) => res.json());
 }
 
 function loadData() {
-	apiFetch("/api/admin/users").then(renderUsers);
-	apiFetch("/api/admin/orders").then(renderOrders);
+	apiFetch("/api/admin/users").then(users => {
+		allUsers = users;
+		renderUsers(users);
+		updateStats(users, allOrders);
+	});
+	apiFetch("/api/admin/orders").then(orders => {
+		allOrders = orders;
+		renderOrders(orders);
+		updateStats(allUsers, orders);
+	});
+}
+
+function updateStats(users, orders) {
+	const totalUsers = users.length;
+	const activeSubscriptions = users.filter(u => u.subscription).length;
+	const totalOrders = orders.length;
+	
+	// Calculate today's revenue from delivered orders
+	const today = new Date().toLocaleDateString('en-IN');
+	const todayRevenue = orders
+		.filter(o => o.status === 'Delivered' && o.date.includes(today.split('/')[0]))
+		.reduce((sum, o) => sum + o.total, 0);
+	
+	document.getElementById('totalUsers').textContent = totalUsers;
+	document.getElementById('activeSubscriptions').textContent = activeSubscriptions;
+	document.getElementById('totalOrders').textContent = totalOrders;
+	document.getElementById('todayRevenue').textContent = '₹' + todayRevenue;
 }
 
 function renderUsers(users) {
 	const body = document.getElementById("usersBody");
 	body.innerHTML = "";
+	
+	if (users.length === 0) {
+		body.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:#5c6b76">No users found</td></tr>';
+		return;
+	}
+	
 	users.forEach((user) => {
-		const sub = user.subscription ? user.subscription.milkType + " x" + user.subscription.qty : "-";
+		const sub = user.subscription 
+			? user.subscription.milkType + " × " + user.subscription.qty 
+			: "-";
+		const subStatus = user.subscription 
+			? '<span class="badge ok">Active</span>' 
+			: '<span class="badge fail">Inactive</span>';
+		
 		const row = "<tr>"
-			+ "<td>" + user.id + "</td>"
+			+ "<td><strong>#" + user.id + "</strong></td>"
 			+ "<td>" + user.name + "</td>"
-			+ "<td>₹" + user.walletBalance + "</td>"
-			+ "<td>" + user.deliveryArea + " (₹" + user.deliveryFee + ")</td>"
+			+ "<td><strong>₹" + user.walletBalance + "</strong></td>"
+			+ "<td>" + user.deliveryArea + "</td>"
+			+ "<td>₹" + user.deliveryFee + "</td>"
 			+ "<td>" + sub + "</td>"
+			+ "<td>" + subStatus + "</td>"
 			+ "</tr>";
 		body.insertAdjacentHTML("beforeend", row);
 	});
@@ -87,22 +377,170 @@ function renderUsers(users) {
 
 function renderOrders(orders) {
 	const body = document.getElementById("ordersBody");
+	const table = document.getElementById("ordersTable");
+	const empty = document.getElementById("ordersEmpty");
+	
 	body.innerHTML = "";
-	orders.forEach((order) => {
+	
+	// Filter orders based on current filter
+	const filteredOrders = currentFilter === 'all' 
+		? orders 
+		: orders.filter(o => o.status === currentFilter);
+	
+	if (filteredOrders.length === 0) {
+		table.style.display = 'none';
+		empty.style.display = 'block';
+		return;
+	}
+	
+	table.style.display = 'table';
+	empty.style.display = 'none';
+	
+	filteredOrders.forEach((order, index) => {
 		const badgeClass = order.status === "Delivered" ? "ok" : "fail";
+		const orderId = order.id || (filteredOrders.length - index);
+		
 		const row = "<tr>"
+			+ "<td><strong>#" + orderId + "</strong></td>"
 			+ "<td>" + order.date + "</td>"
-			+ "<td>" + (order.userName || "-") + "</td>"
+			+ "<td>" + (order.userName || "Guest") + "</td>"
 			+ "<td>" + order.item + "</td>"
-			+ "<td>" + order.qty + "</td>"
-			+ "<td>₹" + order.total + "</td>"
+			+ "<td><strong>" + order.qty + "</strong></td>"
+			+ "<td>₹" + (order.deliveryFee || 0) + "</td>"
+			+ "<td><strong>₹" + order.total + "</strong></td>"
 			+ "<td><span class=\"badge " + badgeClass + "\">" + order.status + "</span></td>"
 			+ "</tr>";
 		body.insertAdjacentHTML("beforeend", row);
 	});
 }
 
+function filterOrders(status) {
+	currentFilter = status;
+	
+	// Update tab active states
+	document.querySelectorAll('.tab').forEach(tab => {
+		tab.classList.remove('active');
+	});
+	event.target.classList.add('active');
+	
+	renderOrders(allOrders);
+}
+
+function downloadOrdersData() {
+	if (allOrders.length === 0) {
+		alert('No orders to download');
+		return;
+	}
+	
+	// Create CSV content
+	let csv = 'Order ID,Date,Customer,Item,Quantity,Delivery Fee,Total Amount,Status\n';
+	
+	allOrders.forEach((order, index) => {
+		const orderId = order.id || (allOrders.length - index);
+		const userName = (order.userName || 'Guest').replace(/,/g, ' ');
+		const item = order.item.replace(/,/g, ' ');
+		
+		csv += `${orderId},${order.date},${userName},${item},${order.qty},${order.deliveryFee || 0},${order.total},${order.status}\n`;
+	});
+	
+	// Create download link
+	const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+	const link = document.createElement('a');
+	const url = URL.createObjectURL(blob);
+	
+	const timestamp = new Date().toISOString().split('T')[0];
+	link.setAttribute('href', url);
+	link.setAttribute('download', `milk-orders-${timestamp}.csv`);
+	link.style.visibility = 'hidden';
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+	
+	alert('Orders data downloaded successfully!');
+}
+
+function downloadUsersData() {
+	if (allUsers.length === 0) {
+		alert('No users to download');
+		return;
+	}
+	
+	// Create CSV content
+	let csv = 'User ID,Name,Wallet Balance,Delivery Area,Delivery Fee,Subscription,Subscription Qty,Status\n';
+	
+	allUsers.forEach((user) => {
+		const name = user.name.replace(/,/g, ' ');
+		const area = user.deliveryArea.replace(/,/g, ' ');
+		const subscription = user.subscription 
+			? user.subscription.milkType.replace(/,/g, ' ')
+			: 'None';
+		const subQty = user.subscription ? user.subscription.qty : 0;
+		const status = user.subscription ? 'Active' : 'Inactive';
+		
+		csv += `${user.id},${name},${user.walletBalance},${area},${user.deliveryFee},${subscription},${subQty},${status}\n`;
+	});
+	
+	// Create download link
+	const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+	const link = document.createElement('a');
+	const url = URL.createObjectURL(blob);
+	
+	const timestamp = new Date().toISOString().split('T')[0];
+	link.setAttribute('href', url);
+	link.setAttribute('download', `milk-users-${timestamp}.csv`);
+	link.style.visibility = 'hidden';
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+	
+	alert('Users data downloaded successfully!');
+}
+
+async function clearAllOrders() {
+	if (allOrders.length === 0) {
+		alert('No orders to clear');
+		return;
+	}
+	
+	const confirmed = confirm(
+		`Are you sure you want to delete all ${allOrders.length} orders?\n\n` +
+		'This action cannot be undone!'
+	);
+	
+	if (!confirmed) return;
+	
+	const deleteConfirm = confirm('⚠️ FINAL WARNING: This will permanently delete ALL order records. Continue?');
+	if (!deleteConfirm) return;
+	
+	try {
+		let deletedCount = 0;
+		
+		// Delete each order
+		for (const order of allOrders) {
+			if (order.id) {
+				const response = await fetch(API_BASE + '/api/admin/orders/' + order.id, {
+					method: 'DELETE'
+				});
+				if (response.ok || response.status === 404) {
+					deletedCount++;
+				}
+			}
+		}
+		
+		alert(`Successfully deleted ${deletedCount} orders!`);
+		
+		// Reload data
+		allOrders = [];
+		loadData();
+		
+	} catch (error) {
+		alert('Error clearing orders: ' + error.message);
+	}
+}
+
 loadData();
+// Auto-refresh every 30 seconds
+setInterval(loadData, 30000);
 </script>
 </body>
 </html>
