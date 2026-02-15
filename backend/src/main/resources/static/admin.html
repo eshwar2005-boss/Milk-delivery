@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sangareddy Milk Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"Space Grotesk",sans-serif;background:#f4f7fb;color:#0b1f2a}
+header{padding:20px;background:#0f3b57;color:#fff}
+.container{max-width:1100px;margin:20px auto;padding:0 20px}
+.card{background:#fff;padding:16px;border-radius:14px;box-shadow:0 10px 30px rgba(11,31,42,.08);margin-bottom:18px}
+button{background:#2367d1;color:#fff;border:0;padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer}
+.table{width:100%;border-collapse:collapse;font-size:14px}
+.table th,.table td{padding:10px 12px;border-bottom:1px solid #e6edf3;text-align:left}
+.table th{font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:#4c5c66}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600}
+.badge.ok{background:#e8f5e9;color:#1f6b4f}
+.badge.fail{background:#fdecea;color:#b3261e}
+</style>
+</head>
+<body>
+<header>
+	<h2>Admin Dashboard</h2>
+</header>
+<div class="container">
+	<div class="card">
+		<button onclick="loadData()">Refresh Data</button>
+	</div>
+	<div class="card">
+		<h3>Users</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Wallet</th>
+					<th>Delivery</th>
+					<th>Subscription</th>
+				</tr>
+			</thead>
+			<tbody id="usersBody"></tbody>
+		</table>
+	</div>
+	<div class="card">
+		<h3>Recent Orders</h3>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>User</th>
+					<th>Item</th>
+					<th>Qty</th>
+					<th>Total</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody id="ordersBody"></tbody>
+		</table>
+	</div>
+</div>
+<script>
+function apiFetch(path) {
+	return fetch(path).then((res) => res.json());
+}
+
+function loadData() {
+	apiFetch("/api/admin/users").then(renderUsers);
+	apiFetch("/api/admin/orders").then(renderOrders);
+}
+
+function renderUsers(users) {
+	const body = document.getElementById("usersBody");
+	body.innerHTML = "";
+	users.forEach((user) => {
+		const sub = user.subscription ? user.subscription.milkType + " x" + user.subscription.qty : "-";
+		const row = "<tr>"
+			+ "<td>" + user.id + "</td>"
+			+ "<td>" + user.name + "</td>"
+			+ "<td>₹" + user.walletBalance + "</td>"
+			+ "<td>" + user.deliveryArea + " (₹" + user.deliveryFee + ")</td>"
+			+ "<td>" + sub + "</td>"
+			+ "</tr>";
+		body.insertAdjacentHTML("beforeend", row);
+	});
+}
+
+function renderOrders(orders) {
+	const body = document.getElementById("ordersBody");
+	body.innerHTML = "";
+	orders.forEach((order) => {
+		const badgeClass = order.status === "Delivered" ? "ok" : "fail";
+		const row = "<tr>"
+			+ "<td>" + order.date + "</td>"
+			+ "<td>" + (order.userName || "-") + "</td>"
+			+ "<td>" + order.item + "</td>"
+			+ "<td>" + order.qty + "</td>"
+			+ "<td>₹" + order.total + "</td>"
+			+ "<td><span class=\"badge " + badgeClass + "\">" + order.status + "</span></td>"
+			+ "</tr>";
+		body.insertAdjacentHTML("beforeend", row);
+	});
+}
+
+loadData();
+</script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sangareddy Milk Delivery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+	--ink:#0b1f2a;
+	--milk:#f7f3ea;
+	--cream:#f5dfb2;
+	--leaf:#1f6b4f;
+	--sky:#b4d7ff;
+	--chili:#c54a2e;
+	--card:#ffffff;
+	--shadow:0 10px 30px rgba(11,31,42,.12);
+}
+*{box-sizing:border-box}
+body{
+	margin:0;
+	color:var(--ink);
+	font-family:"Space Grotesk",sans-serif;
+	background:
+		radial-gradient(1200px 600px at 10% -10%, #fff5d6 0%, transparent 60%),
+		radial-gradient(900px 500px at 90% 0%, #d7efff 0%, transparent 55%),
+		linear-gradient(160deg, #fbfbff 0%, #f4f7ff 30%, #fff8ed 100%);
+}
+header{
+	padding:32px 20px 10px;
+	position:relative;
+	overflow:hidden;
+}
+.brand{
+	max-width:1100px;
+	margin:0 auto;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:20px;
+}
+.brand h1{
+	margin:0;
+	font-family:"Playfair Display",serif;
+	font-size:clamp(28px,4vw,44px);
+	letter-spacing:.2px;
+}
+.brand .tag{
+	font-size:14px;
+	padding:6px 12px;
+	border-radius:999px;
+	background:var(--cream);
+	color:#6a4a1a;
+	font-weight:600;
+}
+.hero{
+	max-width:1100px;
+	margin:20px auto 0;
+	display:grid;
+	grid-template-columns:1.1fr .9fr;
+	gap:24px;
+	align-items:center;
+}
+.hero-card{
+	background:var(--card);
+	border-radius:22px;
+	padding:28px;
+	box-shadow:var(--shadow);
+	position:relative;
+}
+.hero-card:before{
+	content:"";
+	position:absolute;
+	inset:-8px -8px auto auto;
+	width:120px;
+	height:120px;
+	border-radius:50%;
+	background:radial-gradient(circle at 30% 30%, #ffffff 0%, #ffe0a5 60%, transparent 70%);
+	opacity:.7;
+}
+.hero h2{
+	margin:0 0 10px;
+	font-size:clamp(22px,3vw,32px);
+}
+.hero p{
+	margin:0 0 16px;
+	color:#3d4f5a;
+}
+.hero ul{margin:0;padding:0 0 0 18px;color:#3d4f5a}
+.hero li{margin:6px 0}
+.panel{
+	background:linear-gradient(140deg, #1f6b4f 0%, #1d4a62 100%);
+	color:#f3fff8;
+	border-radius:22px;
+	padding:28px;
+	box-shadow:var(--shadow);
+	position:relative;
+	overflow:hidden;
+}
+.panel:after{
+	content:"";
+	position:absolute;
+	right:-40px;
+	top:-40px;
+	width:150px;
+	height:150px;
+	border-radius:50%;
+	background:rgba(255,255,255,.12);
+}
+.container{max-width:1100px;margin:20px auto 60px;padding:0 20px}
+.grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+	gap:18px;
+}
+.card{
+	background:var(--card);
+	border-radius:20px;
+	padding:20px;
+	box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 12px;font-size:18px}
+.pill{
+	display:inline-flex;
+	align-items:center;
+	gap:8px;
+	font-size:12px;
+	background:#eef6ff;
+	color:#23507a;
+	padding:4px 10px;
+	border-radius:999px;
+	font-weight:600;
+}
+.wallet{
+	font-size:28px;
+	font-weight:700;
+	color:var(--leaf);
+	margin:4px 0 10px;
+}
+label{display:block;margin:8px 0 6px;font-weight:600;color:#2c3c46}
+input,select{
+	width:100%;
+	padding:10px 12px;
+	border-radius:10px;
+	border:1px solid #d9e2ea;
+	font-family:"Space Grotesk",sans-serif;
+	background:#fff;
+}
+button{
+	border:0;
+	padding:10px 14px;
+	border-radius:12px;
+	font-weight:600;
+	cursor:pointer;
+	background:linear-gradient(135deg, #2367d1 0%, #3aa3ff 100%);
+	color:white;
+	box-shadow:0 10px 20px rgba(35,103,209,.18);
+}
+button.secondary{background:#f1f5f9;color:#1d2b34;box-shadow:none}
+.hidden{display:none}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.note{font-size:12px;color:#5c6b76}
+.countdown{
+	font-size:26px;
+	font-weight:700;
+	letter-spacing:.5px;
+	color:#0f3b57;
+}
+.subtle{color:#5c6b76;font-size:13px}
+.log{
+	margin-top:10px;
+	font-weight:600;
+	color:#1f6b4f;
+	min-height:18px;
+}
+.full{grid-column:1 / -1}
+.history-table{
+	width:100%;
+	border-collapse:collapse;
+	font-size:14px;
+	margin-top:10px;
+}
+.history-table th,
+.history-table td{
+	text-align:left;
+	padding:10px 12px;
+	border-bottom:1px solid #e6edf3;
+}
+.history-table th{
+	font-size:12px;
+	letter-spacing:.4px;
+	text-transform:uppercase;
+	color:#4c5c66;
+	background:#f6f9fc;
+}
+.history-table tbody tr:nth-child(even){background:#fbfdff}
+.status{
+	display:inline-block;
+	padding:2px 10px;
+	border-radius:999px;
+	font-size:12px;
+	font-weight:600;
+}
+.status.success{background:#e8f5e9;color:#1f6b4f}
+.status.fail{background:#fdecea;color:#b3261e}
+.wave{
+	height:30px;
+	background:linear-gradient(90deg, #f7f3ea 0%, #ffe7ba 45%, #d9edff 100%);
+	mask:radial-gradient(24px 14px at 24px 16px, transparent 98%, black) -24px 0/48px 100% repeat-x;
+}
+.fade-in{animation:fadeIn .6s ease both}
+.rise{animation:rise .6s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media (max-width:900px){
+	.hero{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+	<div class="brand">
+		<div>
+			<h1>🥛 Sangareddy Daily Milk</h1>
+			<div class="note">Fresh morning delivery with transparent billing</div>
+		</div>
+		<div class="tag">7:00 AM Drop</div>
+	</div>
+	<div class="hero">
+		<div class="hero-card fade-in">
+			<h2>Local dairy, calm routines.</h2>
+			<p>Pick your daily milk plan and let the wallet auto-deduct every morning.</p>
+			<ul>
+				<li>City + village delivery zones</li>
+				<li>Transparent daily charges</li>
+				<li>Lightweight wallet top-ups</li>
+			</ul>
+		</div>
+		<div class="panel rise">
+			<h3 style="margin:0 0 6px">Today&apos;s Snapshot</h3>
+			<p style="margin:0 0 16px">We deliver before your tea is ready.</p>
+			<div class="row">
+				<div class="pill">Dawn Route</div>
+				<div class="pill">Farm chilled</div>
+				<div class="pill">Auto-deduct</div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="wave"></div>
+<div class="container">
+
+<div id="login" class="fade-in">
+	<div class="card" style="max-width:520px;margin:0 auto">
+		<h3>Welcome back</h3>
+		<label for="name">Name</label>
+		<input id="name" placeholder="Enter name">
+		<div class="row" style="margin-top:10px">
+			<button onclick="login()">Enter Dashboard</button>
+			<button class="secondary" onclick="document.getElementById('name').value=''">Clear</button>
+		</div>
+		<div class="note" style="margin-top:10px">Admin? Open <a href="/admin.html">/admin.html</a></div>
+	</div>
+</div>
+
+<div id="dashboard" class="hidden">
+	<div class="grid">
+		<div class="card">
+			<h3>Wallet</h3>
+			<div class="wallet" id="wallet">₹0</div>
+			<label for="addMoney">Add funds</label>
+			<input id="addMoney" type="number" placeholder="Add amount">
+			<div class="row" style="margin-top:10px">
+				<button onclick="addWallet()">Recharge Wallet</button>
+			</div>
+			<div class="note">Tip: keep at least ₹200 for hassle-free delivery.</div>
+		</div>
+
+		<div class="card">
+			<h3>Subscribe Milk</h3>
+			<label for="milkType">Plan</label>
+			<select id="milkType">
+				<option value="28">500ml - ₹28</option>
+				<option value="54">1L - ₹54</option>
+			</select>
+			<label for="qty">Quantity</label>
+			<input id="qty" type="number" value="1">
+			<div class="row" style="margin-top:10px">
+				<button onclick="subscribe()">Start Daily Subscription</button>
+			</div>
+			<div class="note">Auto-deduct every morning at 7:00 AM.</div>
+		</div>
+
+		<div class="card">
+			<h3>Delivery Area</h3>
+			<label for="area">Choose zone</label>
+			<select id="area" onchange="updateDelivery()">
+				<option value="5">Sangareddy Town ₹5</option>
+				<option value="8">Pothireddypally ₹8</option>
+				<option value="10">Isnapur ₹10</option>
+				<option value="15">Village ₹15</option>
+			</select>
+			<div class="row" style="margin-top:10px">
+				<div class="pill">Delivery Fee ₹<span id="delivery">5</span></div>
+			</div>
+			<div class="note">Zone fees cover ice packs + transport.</div>
+		</div>
+
+		<div class="card">
+			<h3>Next Delivery Countdown</h3>
+			<div id="countdown" class="countdown">--:--:--</div>
+			<div class="subtle">Delivery Time: 7:00 AM</div>
+		</div>
+
+		<div class="card">
+			<h3>Today&apos;s Deduction</h3>
+			<p class="note">Simulation for morning dispatch.</p>
+			<button onclick="simulateDay()">Run 7:00 AM Delivery</button>
+			<div id="log" class="log"></div>
+		</div>
+
+		<div class="card full">
+			<h3>Order History</h3>
+			<div class="note">Daily records build trust in wallet deductions.</div>
+			<div id="historyEmpty" class="note" style="margin-top:10px">No deliveries yet. Run a 7:00 AM simulation to add a record.</div>
+			<table class="history-table" aria-label="Order history">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Item</th>
+						<th>Qty</th>
+						<th>Delivery Fee</th>
+						<th>Total</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody id="historyBody"></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+</div>
+
+<script>
+const API_BASE = window.location.origin === "null" ? "http://localhost:8080" : "";
+let userId = null;
+let subscription = null;
+let countdownTimer = null;
+
+function apiFetch(path, options) {
+	const opts = options || {};
+	opts.headers = Object.assign({ "Content-Type": "application/json" }, opts.headers || {});
+	return fetch(API_BASE + path, opts).then(async (res) => {
+		if (!res.ok) {
+			let msg = "Request failed";
+			try {
+				const text = await res.text();
+				if (text) msg = text;
+			} catch (err) {
+				msg = "Request failed";
+			}
+			throw new Error(msg);
+		}
+		if (res.status === 204) return null;
+		return res.json();
+	});
+}
+
+function login() {
+	const name = document.getElementById("name").value.trim();
+	if (!name) return alert("Enter name");
+	apiFetch("/api/users/login", {
+		method: "POST",
+		body: JSON.stringify({ name })
+	}).then((data) => {
+		userId = data.id;
+		subscription = data.subscription || null;
+		localStorage.setItem("milkUserId", String(userId));
+		localStorage.setItem("milkUserName", data.name);
+		showDashboard();
+		hydrateUser(data);
+		loadHistory();
+	}).catch((err) => alert(err.message));
+}
+
+function showDashboard() {
+	document.getElementById("login").classList.add("hidden");
+	document.getElementById("dashboard").classList.remove("hidden");
+}
+
+function hydrateUser(data) {
+	document.getElementById("wallet").innerText = "₹" + data.walletBalance;
+	document.getElementById("delivery").innerText = data.deliveryFee;
+	const areaSelect = document.getElementById("area");
+	if (areaSelect) {
+		areaSelect.value = String(data.deliveryFee);
+	}
+	if (data.subscription) {
+		const milkSelect = document.getElementById("milkType");
+		milkSelect.value = String(data.subscription.price);
+		document.getElementById("qty").value = data.subscription.qty;
+	}
+}
+
+function loadSession() {
+	startCountdown();
+	const id = localStorage.getItem("milkUserId");
+	if (!id) return;
+	apiFetch("/api/users/" + id).then((data) => {
+		userId = data.id;
+		subscription = data.subscription || null;
+		showDashboard();
+		hydrateUser(data);
+		loadHistory();
+	}).catch(() => {
+		localStorage.removeItem("milkUserId");
+	});
+}
+
+function addWallet() {
+	if (!userId) return;
+	const amt = parseInt(document.getElementById("addMoney").value, 10);
+	if (!amt || amt <= 0) return alert("Enter amount");
+	apiFetch("/api/users/" + userId + "/wallet/recharge", {
+		method: "POST",
+		body: JSON.stringify({ amount: amt })
+	}).then((data) => {
+		hydrateUser(data);
+		document.getElementById("addMoney").value = "";
+	}).catch((err) => alert(err.message));
+}
+
+function subscribe() {
+	if (!userId) return;
+	const price = parseInt(document.getElementById("milkType").value, 10);
+	const qty = parseInt(document.getElementById("qty").value, 10);
+	if (!qty || qty <= 0) return alert("Enter quantity");
+	const milkType = price === 28 ? "Milk 500ml" : price === 54 ? "Milk 1L" : "Milk";
+	apiFetch("/api/users/" + userId + "/subscription", {
+		method: "POST",
+		body: JSON.stringify({ milkType, price, qty })
+	}).then((data) => {
+		subscription = data;
+		alert("Subscribed successfully");
+	}).catch((err) => alert(err.message));
+}
+
+function updateDelivery() {
+	if (!userId) return;
+	const select = document.getElementById("area");
+	const fee = parseInt(select.value, 10);
+	const area = select.options[select.selectedIndex].text.split("₹")[0].trim();
+	apiFetch("/api/users/" + userId + "/delivery", {
+		method: "PUT",
+		body: JSON.stringify({ area, fee })
+	}).then((data) => {
+		hydrateUser(data);
+	}).catch((err) => alert(err.message));
+}
+
+function simulateDay() {
+	if (!userId) return;
+	fetch(API_BASE + "/api/users/" + userId + "/simulate", { method: "POST" })
+		.then(async (res) => {
+			if (res.status === 400) {
+				document.getElementById("log").innerHTML = "❌ No subscription";
+				return null;
+			}
+			if (!res.ok) throw new Error("Simulation failed");
+			return res.json();
+		})
+		.then((data) => {
+			if (!data) return;
+			document.getElementById("wallet").innerText = "₹" + data.walletBalance;
+			document.getElementById("log").innerHTML = data.status === "Delivered"
+				? "✅ " + data.message
+				: "❌ " + data.message;
+			loadHistory();
+		})
+		.catch(() => {
+			document.getElementById("log").innerHTML = "❌ Simulation failed";
+		});
+}
+
+function loadHistory() {
+	if (!userId) return;
+	apiFetch("/api/users/" + userId + "/orders").then((orders) => {
+		renderHistory(orders || []);
+	});
+}
+
+function renderHistory(history) {
+	const body = document.getElementById("historyBody");
+	const empty = document.getElementById("historyEmpty");
+	body.innerHTML = "";
+	if (!history.length) {
+		empty.style.display = "block";
+		return;
+	}
+	empty.style.display = "none";
+	history.forEach((entry) => {
+		const statusClass = entry.status === "Delivered" ? "success" : "fail";
+		const row = "<tr>"
+			+ "<td>" + entry.date + "</td>"
+			+ "<td>" + entry.item + "</td>"
+			+ "<td>" + entry.qty + "</td>"
+			+ "<td>₹" + entry.deliveryFee + "</td>"
+			+ "<td>₹" + entry.total + "</td>"
+			+ "<td><span class=\"status " + statusClass + "\">" + entry.status + "</span></td>"
+			+ "</tr>";
+		body.insertAdjacentHTML("beforeend", row);
+	});
+}
+
+function startCountdown() {
+	if (countdownTimer) return;
+	updateCountdown();
+	countdownTimer = setInterval(updateCountdown, 1000);
+}
+
+function updateCountdown() {
+	const el = document.getElementById("countdown");
+	if (!el) return;
+	const now = new Date();
+	const target = new Date();
+	target.setHours(7, 0, 0, 0);
+	if (now.getTime() >= target.getTime()) {
+		target.setDate(target.getDate() + 1);
+	}
+	const diff = target - now;
+	const totalSeconds = Math.floor(diff / 1000);
+	const hours = Math.floor(totalSeconds / 3600);
+	const minutes = Math.floor((totalSeconds % 3600) / 60);
+	const seconds = totalSeconds % 60;
+	const hh = String(hours).padStart(2, "0");
+	const mm = String(minutes).padStart(2, "0");
+	const ss = String(seconds).padStart(2, "0");
+	el.textContent = hh + "h " + mm + "m " + ss + "s";
+}
+
+loadSession();
+</script>
+</body>
+</html>
